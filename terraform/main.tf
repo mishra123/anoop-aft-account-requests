@@ -1,3 +1,17 @@
+locals {
+  account_requests = {
+    for key, account in var.accounts : key => merge(account, {
+      module_name = replace(key, "-", "_")
+      sso_email   = coalesce(try(account.sso_user_email, null), var.default_sso_user.email)
+      sso_first   = coalesce(try(account.sso_first_name, null), var.default_sso_user.first_name)
+      sso_last    = coalesce(try(account.sso_last_name, null), var.default_sso_user.last_name)
+      tags = merge(var.default_tags, {
+        Application = account.application
+        Environment = account.environment
+      }, try(account.tags, {}))
+    })
+  }
+}
 module "account_requests" {
   for_each = local.account_requests
 
