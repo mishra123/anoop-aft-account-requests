@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    aft = {
+      source  = "aws-ia/aft"
+      version = "~> 1.0"
+    }
+  }
+}
+
+provider "aft" {}
 locals {
   account_requests = {
     for key, account in var.accounts : key => merge(account, {
