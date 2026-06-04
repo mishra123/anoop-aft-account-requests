@@ -13,10 +13,8 @@ locals {
   }
 }
 
-module "account_requests" {
+resource "aft_account_request" "accounts" {
   for_each = local.account_requests
-
-  source = "git::https://github.com/aws-ia/terraform-aws-control_tower_account_factory.git//modules/aft-account-request?ref=1.20.0"
 
   control_tower_parameters = {
     AccountEmail              = each.value.email
