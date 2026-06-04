@@ -22,3 +22,4 @@ Use Control Tower OU names in `ou`. For nested OUs, use path format such as:
 
 - The diagram showed duplicate names for data-platform and AI platform accounts under production and non-production. The Terraform map uses unique AWS account names: `*-prod` and `*-nonprod`.
 - Replace placeholder email aliases and SSO owner details before merge. AWS account root emails must be unique and routable.
+# trigger
